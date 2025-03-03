@@ -15,3 +15,9 @@ variable "public_yandex_vpc_subnet_default_cidr" {
   default     = ["192.168.10.0/24"]
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
+
+variable "tfstate_bucket_name" {
+  type        = string
+  default     = "tfstate-2025"
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
+}
