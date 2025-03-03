@@ -17,10 +17,6 @@ resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
   }
 }
 
-#resource "yandex_resourcemanager_folder_iam_member" "lockboxview" {
-#  role      = "lockbox.payloadViewer"
-#  member    = "serviceAccount:${yandex_iam_service_account.sa.id}"
-#}
 resource "yandex_lockbox_secret" "tfstate-bucket" {
   name                = "tfstate-bucket"
   deletion_protection = false
