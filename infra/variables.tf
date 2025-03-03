@@ -15,9 +15,3 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-
-variable "public_yandex_vpc_subnet_default_cidr" {
-  type        = list(string)
-  default     = ["192.168.10.0/24"]
-  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-}
