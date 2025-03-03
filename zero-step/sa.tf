@@ -32,8 +32,8 @@ data "yandex_lockbox_secret_version" "tfstate-bucket_version" {
 }
 
 output "access_key" {
-  value = data.yandex_lockbox_secret_version.tfstate-bucket.entries[1].text_value
+  value = data.yandex_lockbox_secret_version.tfstate-bucket_version.entries[1].text_value
 }
 output "secret_key" {
-  value = data.yandex_lockbox_secret_version.tfstate-bucket.entries[0].text_value
+  value = data.yandex_lockbox_secret_version.tfstate-bucket_version.entries[0].text_value
 }
