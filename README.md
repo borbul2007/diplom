@@ -9,3 +9,6 @@
 export ACCESS_KEY=""
 export SECRET_KEY=""
 terraform init -backend-config="access_key=" -backend-config=""
+
+yc iam service-accounts list
+yc iam key create --service-account-name infra-editor --output key.json

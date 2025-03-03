@@ -12,11 +12,6 @@ resource "yandex_storage_bucket" "tfstate" {
     list        = false
     config_read = false
   }
-  grant {
-    id          = yandex_iam_service_account.sa.id
-    type        = "CanonicalUser"
-    permissions = ["FULL_CONTROL"]
-  }
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
