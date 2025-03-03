@@ -36,3 +36,4 @@ output "access_key" {
 }
 output "secret_key" {
   value = data.yandex_lockbox_secret_version.tfstate-bucket.entries[0].text_value
+}
