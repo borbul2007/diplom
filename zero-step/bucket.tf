@@ -6,9 +6,12 @@ resource "yandex_kms_symmetric_key" "tfstate-bucket-key" {
 
 resource "yandex_storage_bucket" "tfstate" {
   bucket                = var.tfstate_bucket_name
-  access_key            = yandex_iam_service_account_static_access_key.sa-static-key.access_key
-  secret_key            = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   max_size              = 10485760
+  grant {
+    id          = yandex_iam_service_account.sa.id
+    type        = "CanonicalUser"
+    permissions = ["FULL_CONTROL"]
+  }
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {

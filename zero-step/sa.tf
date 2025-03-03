@@ -28,7 +28,7 @@ resource "yandex_lockbox_secret" "tfstate-bucket" {
 data "yandex_lockbox_secret_version" "tfstate-bucket_version" {
   secret_id  = yandex_lockbox_secret.tfstate-bucket.id
   version_id = yandex_iam_service_account_static_access_key.sa-static-key.output_to_lockbox_version_id
-  depends_on = [ yandex_lockbox_secret.tfstate-bucket ]
+  depends_on = [yandex_lockbox_secret.tfstate-bucket]
 }
 
 output "access_key" {

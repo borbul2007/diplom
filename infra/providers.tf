@@ -1,11 +1,9 @@
 terraform {
   required_providers {
-    yandex = {
-      source = "yandex-cloud/yandex"
-    }
+    yandex = {source = "yandex-cloud/yandex"}
   }
   backend "s3" {
-    endpoints = { s3 = "https://storage.yandexcloud.net" }
+    endpoints = {s3 = "https://storage.yandexcloud.net"}
     bucket    = "tfstate-2025"
     region    = "ru-central1"
     key       = "terraform.tfstate"
