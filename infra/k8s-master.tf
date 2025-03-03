@@ -16,8 +16,8 @@ resource "yandex_kubernetes_cluster" "k8s" {
     }
     security_group_ids = [yandex_vpc_security_group.k8s-sg.id]
   }
-  service_account_id      = yandex_iam_service_account.my-regional-account.id
-  node_service_account_id = yandex_iam_service_account.my-regional-account.id
+  service_account_id      = yandex_iam_service_account.k8s.id
+  node_service_account_id = yandex_iam_service_account.k8s.id
   depends_on = [
     yandex_resourcemanager_folder_iam_member.k8s-clusters-agent,
     yandex_resourcemanager_folder_iam_member.vpc-public-admin,
@@ -29,37 +29,33 @@ resource "yandex_kubernetes_cluster" "k8s" {
   }
 }
 
-#resource "yandex_iam_service_account" "my-regional-account" {
-#  name        = "regional-k8s-account"
-#  description = "K8S regional service account"
-#}
+resource "yandex_iam_service_account" "k8s" {
+  name        = "k8s"
+  description = "K8S service account"
+}
 
 resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" {
-  # Сервисному аккаунту назначается роль "k8s.clusters.agent".
   folder_id = local.folder_id
   role      = "k8s.clusters.agent"
-  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "vpc-public-admin" {
-  # Сервисному аккаунту назначается роль "vpc.publicAdmin".
   folder_id = local.folder_id
   role      = "vpc.publicAdmin"
-  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "images-puller" {
-  # Сервисному аккаунту назначается роль "container-registry.images.puller".
   folder_id = local.folder_id
   role      = "container-registry.images.puller"
-  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
-  # Сервисному аккаунту назначается роль "kms.keys.encrypterDecrypter".
   folder_id = local.folder_id
   role      = "kms.keys.encrypterDecrypter"
-  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
 }
 
 resource "yandex_kms_symmetric_key" "key-kms-key" {
