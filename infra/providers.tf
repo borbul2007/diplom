@@ -16,9 +16,6 @@ terraform {
     skip_credentials_validation = true
     skip_requesting_account_id  = true 
     skip_s3_checksum            = true
-
-    access_key = file("~/dplm/tfstate_bucket-acces.key")
-    secret_key = file("~/dplm/tfstate_bucket-secret.key")
   }
   required_version = "~>1.8.4"
 }
