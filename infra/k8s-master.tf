@@ -58,7 +58,7 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
   member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
 }
 
-resource "yandex_kms_symmetric_key" "key-kms-key" {
+resource "yandex_kms_symmetric_key" "k8s-kms-key" {
   name              = "k8s-kms-key"
   default_algorithm = "AES_128"
   rotation_period   = "8760h"
