@@ -27,6 +27,11 @@ data "yandex_lockbox_secret_version" "tfstate-bucket_version" {
   depends_on = [yandex_lockbox_secret.tfstate-bucket]
 }
 
+#provisioner "local-exec" {
+#  commamd = "export ACCESS_KEY=data.yandex_lockbox_secret_version.tfstate-bucket_version.entries[1].text_value"
+#  command = "export SECRET_KEY=data.yandex_lockbox_secret_version.tfstate-bucket_version.entries[0].text_value"
+#}
+
 output "access_key" {
   value = data.yandex_lockbox_secret_version.tfstate-bucket_version.entries[1].text_value
 }
