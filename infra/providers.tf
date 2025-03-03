@@ -17,8 +17,11 @@ terraform {
     skip_requesting_account_id  = true 
     skip_s3_checksum            = true
 
-    access_key = file("~/dplm/tfstate_bucket-acces.key")
-    secret_key = file("~/dplm/tfstate_bucket-secret.key")
+    access_key            = yandex_iam_service_account_static_access_key.sa-static-key.access_key
+    secret_key            = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
+
+#    access_key = file("~/dplm/tfstate_bucket-acces.key")
+#    secret_key = file("~/dplm/tfstate_bucket-secret.key")
   }
   required_version = "~>1.8.4"
 }
