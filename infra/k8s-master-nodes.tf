@@ -16,47 +16,49 @@ resource "yandex_kubernetes_cluster" "k8s" {
     }
     security_group_ids = [yandex_vpc_security_group.k8s-sg.id]
   }
-  service_account_id      = yandex_iam_service_account.k8s.id
-  node_service_account_id = yandex_iam_service_account.k8s.id
-  depends_on = [
-    yandex_resourcemanager_folder_iam_member.k8s-clusters-agent,
-    yandex_resourcemanager_folder_iam_member.vpc-public-admin,
-    yandex_resourcemanager_folder_iam_member.images-puller,
-    yandex_resourcemanager_folder_iam_member.encrypterDecrypter
-  ]
+  service_account_id      = yandex_iam_service_account.infra-editor.id
+  node_service_account_id = yandex_iam_service_account.infra-editor.id
+#  service_account_id      = yandex_iam_service_account.k8s.id
+#  node_service_account_id = yandex_iam_service_account.k8s.id
+#  depends_on = [
+#    yandex_resourcemanager_folder_iam_member.k8s-clusters-agent,
+#    yandex_resourcemanager_folder_iam_member.vpc-public-admin,
+#    yandex_resourcemanager_folder_iam_member.images-puller,
+#    yandex_resourcemanager_folder_iam_member.encrypterDecrypter
+#  ]
   kms_provider {
     key_id = yandex_kms_symmetric_key.k8s-kms-key.id
   }
 }
 
-resource "yandex_iam_service_account" "k8s" {
-  name        = "k8s"
-  description = "K8S service account"
-}
+#resource "yandex_iam_service_account" "k8s" {
+#  name        = "k8s"
+#  description = "K8S service account"
+#}
 
-resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" {
-  folder_id = var.folder_id
-  role      = "k8s.clusters.agent"
-  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
-}
+#resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" {
+#  folder_id = var.folder_id
+#  role      = "k8s.clusters.agent"
+#  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
+#}
 
-resource "yandex_resourcemanager_folder_iam_member" "vpc-public-admin" {
-  folder_id = var.folder_id
-  role      = "vpc.publicAdmin"
-  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
-}
+#resource "yandex_resourcemanager_folder_iam_member" "vpc-public-admin" {
+#  folder_id = var.folder_id
+#  role      = "vpc.publicAdmin"
+#  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
+#}
 
-resource "yandex_resourcemanager_folder_iam_member" "images-puller" {
-  folder_id = var.folder_id
-  role      = "container-registry.images.puller"
-  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
-}
+#resource "yandex_resourcemanager_folder_iam_member" "images-puller" {
+#  folder_id = var.folder_id
+#  role      = "container-registry.images.puller"
+#  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
+#}
 
-resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
-  folder_id = var.folder_id
-  role      = "kms.keys.encrypterDecrypter"
-  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
-}
+#resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
+#  folder_id = var.folder_id
+#  role      = "kms.keys.encrypterDecrypter"
+#  member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
+#}
 
 resource "yandex_kms_symmetric_key" "k8s-kms-key" {
   name              = "k8s-kms-key"
