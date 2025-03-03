@@ -10,14 +10,14 @@ variable "folder_id" {
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
 
+variable "default_zone" {
+  type        = string
+  default     = "ru-central1-a"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
 variable "public_yandex_vpc_subnet_default_cidr" {
   type        = list(string)
   default     = ["192.168.10.0/24"]
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-}
-
-variable "tfstate_bucket_name" {
-  type        = string
-  default     = "tfstate-2025"
-  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
