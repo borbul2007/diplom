@@ -10,14 +10,17 @@ terraform {
     endpoints = {
       s3 = "https://storage.yandexcloud.net"
     }
-    bucket = "<bucket_name>"
+    bucket = var.tfstate_bucket_name
     region = "ru-central1"
-    key    = "<path_to_state_file_in_bucket>/<state_file_name>.tfstate"
+    key    = "tfstate.tfstate"
 
     skip_region_validation      = true
     skip_credentials_validation = true
     skip_requesting_account_id  = true 
-    skip_s3_checksum            = true # This option is required to describe backend for Terraform version 1.6.3 or higher.
+    skip_s3_checksum            = true
+
+    access_key = file("~/dplm/tfstate_bucket-acces.key")
+    secret_key = file("~/dplm/tfstate_bucket-secret.key")
 
   }
 }

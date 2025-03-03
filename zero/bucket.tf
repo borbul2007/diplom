@@ -1,5 +1,5 @@
 resource "yandex_storage_bucket" "tfstate" {
-  bucket = "tfstate-2025"
+  bucket = var.state_bucket_name
   anonymous_access_flags {
     read        = true
     list        = false

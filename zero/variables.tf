@@ -9,3 +9,10 @@ variable "folder_id" {
   default     = "b1gkg5og1lpl8fc1563m"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
+
+variable "tfstate_bucket_name" {
+  type        = string
+  default     = "tfstate-2025"
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
+}
+
