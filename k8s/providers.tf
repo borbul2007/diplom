@@ -3,6 +3,7 @@ terraform {
     yandex = {
       source = "yandex-cloud/yandex"
     }
+  }
   backend "s3" {
     endpoints = {
       s3 = "https://storage.yandexcloud.net"
@@ -15,7 +16,6 @@ terraform {
     skip_credentials_validation = true
     skip_requesting_account_id  = true 
     skip_s3_checksum            = true
-  }
   }
   required_version = "~>1.8.4"
 }
