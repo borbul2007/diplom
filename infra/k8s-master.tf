@@ -25,7 +25,7 @@ resource "yandex_kubernetes_cluster" "k8s" {
     yandex_resourcemanager_folder_iam_member.encrypterDecrypter
   ]
   kms_provider {
-    key_id = yandex_kms_symmetric_key.kms-key.id
+    key_id = yandex_kms_symmetric_key.k8s-kms-key.id
   }
 }
 
