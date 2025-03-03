@@ -7,6 +7,11 @@ resource "yandex_kms_symmetric_key" "tfstate-bucket-key" {
 resource "yandex_storage_bucket" "tfstate" {
   bucket                = var.tfstate_bucket_name
   max_size              = 10485760
+  anonymous_access_flags {
+    read        = false
+    list        = false
+    config_read = false
+  }
   grant {
     id          = yandex_iam_service_account.sa.id
     type        = "CanonicalUser"
