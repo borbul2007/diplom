@@ -26,20 +26,23 @@ variable "k8s_networks" {
 */
 
 variable "k8s_networks" {
-  type = list(map(string))
-  default = [
+  type = list(object({
+    zone = string
+    cidr = string
+  }))  
+  default = (
     {
-      zone: "ru-central1-a"
-      cidr: "192.168.10.0/24"
+      zone = "ru-central1-a"
+      cidr = "192.168.10.0/24"
     },
     {
-      zone: "ru-central1-b"
-      cidr: "192.168.20.0/24"
+      zone = "ru-central1-b"
+      cidr = "192.168.20.0/24"
     },
     {
-      zone: "ru-central1-d"
-      cidr: "192.168.30.0/24"
+      zone = "ru-central1-d"
+      cidr = "192.168.30.0/24"
     }
-  ]
+  )
   description = "Networks for K8S cluster"
 }
