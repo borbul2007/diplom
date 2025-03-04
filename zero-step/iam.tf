@@ -16,6 +16,11 @@ resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
     entry_for_secret_key = "secret_key"
   }
 }
+data "yandex_bucket_keys" "tfstate-bucket-keys" {
+  access_key = yandex_iam_service_account_static_access_key.sa-static-key.access_key
+  secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
+}
+
 
 resource "yandex_lockbox_secret" "tfstate-bucket" {
   name                = "tfstate-bucket"
