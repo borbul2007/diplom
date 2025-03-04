@@ -30,7 +30,7 @@ variable "k8s_networks" {
     zone = string
     cidr = string
   }))  
-  default = (
+  default = [
     {
       zone = "ru-central1-a"
       cidr = "192.168.10.0/24"
@@ -43,6 +43,6 @@ variable "k8s_networks" {
       zone = "ru-central1-d"
       cidr = "192.168.30.0/24"
     }
-  )
+  ]
   description = "Networks for K8S cluster"
 }
