@@ -15,15 +15,6 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-/*
-variable "k8s_networks" {
-  type    = map(list(string))
-  default = {
-    zones = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
-    cidrs = ["192.168.10.0/24", "192.168.20.0/24", "192.168.30.0/24"]
-  }
-}
-*/
 
 variable "k8s_networks" {
   type = list(object({
