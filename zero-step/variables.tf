@@ -19,5 +19,5 @@ variable "default_zone" {
 variable "tfstate_bucket_name" {
   type        = string
   default     = "tfstate-2025"
-  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
+  description = "Yandex Object Storage bucket name for Terraform State"
 }
