@@ -8,7 +8,7 @@ resource "yandex_resourcemanager_folder_iam_member" "sa-editor" {
   member     = "serviceAccount:${yandex_iam_service_account.sa.id}"
 }
 resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
-  service_account_id = nonsensitive(yandex_iam_service_account.sa.id)
+  service_account_id = yandex_iam_service_account.sa.id
   description        = "Static access key for object storage"
   output_to_lockbox {
     secret_id            = yandex_lockbox_secret.tfstate-bucket.id
