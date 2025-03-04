@@ -28,7 +28,7 @@ resource "yandex_vpc_subnet" "subnet-3" {
 resource "yandex_vpc_subnet" "subnet" {
   count          = 3
   name           = "subnet-${count.index}"
-  zone           = var.k8s_networks_zones.[count.index]
+  zone           = var.k8s_networks.zones[count.index]
   network_id     = yandex_vpc_network.network.id
-  v4_cidr_blocks = [var.k8s_networks_cids.[count.index]]
+  v4_cidr_blocks = [var.k8s_networks.cids[count.index]]
 }
