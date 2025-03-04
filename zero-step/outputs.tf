@@ -1,8 +1,8 @@
 output "tfstate-bucket_access-key" {
-  value = data.yandex_iam_service_account_static_access_key.tfstate-bucket-keys.entries[1].text_value
+  value = yandex_iam_service_account_static_access_key.sa-static-key.access_key
 }
 output "tfstate-bucket_secret-key" {
-  value = data.yandex_iam_service_account_static_access_key.tfstate-bucket-keys.entries[0].text_value
+  value = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
 }
 
 output "access_key" {
