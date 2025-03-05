@@ -8,4 +8,5 @@ resource "yandex_vpc_subnet" "subnet" {
   name           = "subnet-${count.index}"
   zone           = var.k8s_networks[count.index].zone
   v4_cidr_blocks = [var.k8s_networks[count.index].cidr]
+  depends_on     = [yandex_vpc_network.network]
 }

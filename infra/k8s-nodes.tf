@@ -6,7 +6,12 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   name                = "k8s-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
-  depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-ig]
+  depends_on          = [
+    yandex_resourcemanager_folder_iam_member.k8s-ig,
+    yandex_vpc_subnet.subnet-1,
+    yandex_vpc_subnet.subnet-2,
+    yandex_vpc_subnet.subnet-3,
+  ]
   instance_template {
     name = "k8s-node-{instance.index}"
     platform_id = var.vm_yandex_compute_instance_platform_id
