@@ -40,7 +40,7 @@ variable "k8s_networks" {
 
 variable "image_family" {
   type        = string
-  default     = "ubuntu-2404-lts-oslogin"
+  default     = "ubuntu-2204-lts-oslogin"
   description = "VM image family"
 }
 
