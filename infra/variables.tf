@@ -44,26 +44,28 @@ variable "vm_yandex_compute_image_family" {
   description = "VM image family"
 }
 
-variable "k8s_nodes" {
-  type = list(object({
-    zone = string
-    cidr = string
-  }))  
-  default = [
-    {
-      zone = "ru-central1-a"
-      cidr = "192.168.10.0/24"
-    },
-    {
-      zone = "ru-central1-b"
-      cidr = "192.168.20.0/24"
-    },
-    {
-      zone = "ru-central1-d"
-      cidr = "192.168.30.0/24"
-    }
-  ]
-  description = "Networks for K8S cluster"
+variable "vm_yandex_compute_instance_platform_id" {
+  type        = string
+  default     = "standard-v1"
+  description = "VM platform ID"
+}
+
+variable "vm_yandex_compute_instance_resources_cores" {
+  type        = number
+  default     = 2
+  description = "VM number of CPU"
+}
+
+variable "vm_yandex_compute_instance_resources_memory" {
+  type        = number
+  default     = 1
+  description = "VM number of memory"
+}
+
+variable "vm_yandex_compute_instance_resources_core_fraction" {
+  type        = number
+  default     = 5
+  description = "VM number of core fraction"
 }
 
 variable "cloud-init_file" {

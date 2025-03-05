@@ -8,7 +8,7 @@ resource "yandex_lb_network_load_balancer" "network-load-balancer" {
     }
   }
   attached_target_group {
-    target_group_id = yandex_compute_instance_group.k8s-instance-group.load_balancer.0.target_group_id
+    target_group_id = yandex_compute_instance_group.k8s-nodes.load_balancer.0.target_group_id
     healthcheck {
       name = "http"
       http_options {

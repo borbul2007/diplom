@@ -2,26 +2,13 @@ data "yandex_compute_image" "vm-image" {
   family = var.vm_yandex_compute_image_family
 }
 
-resource "yandex_iam_service_account" "k8s-instance-group-sa" {
-  name        = "k8s-instance-group-sa"
-  description = "Service account for managing the K8S instance group"
-}
-resource "yandex_resourcemanager_folder_iam_member" "editor" {
-  folder_id  = var.folder_id
-  role       = "editor"
-  member     = "serviceAccount:${yandex_iam_service_account.instance-group-sa.id}"
-  depends_on = [yandex_iam_service_account.instance-group-sa]
-}
-
-resource "yandex_compute_instance_group" "instance-group" {
-  name                = "instance-group"
+resource "yandex_compute_instance_group" "k8s-nodes" {
+  name                = "k8s-nodes"
   folder_id           = var.folder_id
-  service_account_id  = "${yandex_iam_service_account.instance-group-sa.id}"
-  depends_on          = [yandex_resourcemanager_folder_iam_member.editor]
-  
-  
-  
+  service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
+  depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-ig]
   instance_template {
+    name = "k8s-node-{instance.index}"
     platform_id = var.vm_yandex_compute_instance_platform_id
     resources {
       cores         = var.vm_yandex_compute_instance_resources_cores
@@ -30,15 +17,17 @@ resource "yandex_compute_instance_group" "instance-group" {
     }
     boot_disk {
       initialize_params {
-      image_id = data.yandex_compute_image.vm-image_id.image_id
+        image_id = data.yandex_compute_image.vm-image_id.image_id
+        size     = 10
+        type     = "hdd"
       }
     }
     network_interface {
       network_id = "${yandex_vpc_network.network.id}"
-      subnet_ids = ["${yandex_vpc_subnet.public.id}"]
+      subnet_ids = [yandex_vpc_subnet.subnet-1.id,yandex_vpc_subnet.subnet-2.id,yandex_vpc_subnet.subnet-3.id]
       nat        = true
     }
-    scheduling_policy { preemptible = true }
+    scheduling_policy {preemptible = true}
     metadata = {
       serial-port-enable = 1
       user-data          = "${local.cloud-init}"
@@ -50,7 +39,7 @@ resource "yandex_compute_instance_group" "instance-group" {
     }
   }
   allocation_policy {
-    zones = [var.default_zone]
+    zones = ["ru-central1-a","ru-central1-b","ru-central1-d"]
   }
   deploy_policy {
     max_unavailable = 1
@@ -67,7 +56,7 @@ resource "yandex_compute_instance_group" "instance-group" {
     }
   }
   load_balancer {
-    target_group_name        = "k8s-target-group"
+    target_group_name        = "k8s"
     target_group_description = "Network Load Balancer K8S target group"
   }
 }

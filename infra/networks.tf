@@ -1,9 +1,7 @@
-# VPC networks
 resource "yandex_vpc_network" "network" {
   name = "network"
 }
 
-# VPC subnets
 resource "yandex_vpc_subnet" "subnet" {
   count = length(var.k8s_networks)
   network_id     = yandex_vpc_network.network.id
