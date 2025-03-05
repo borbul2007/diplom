@@ -2,16 +2,22 @@ data "yandex_compute_image" "vm-image" {
   family = var.image_family
 }
 
+resource "yandex_iam_service_account" "k8s-ig" {
+  name        = "k8s-ig"
+  description = "Service account for managing K8S instance group"
+}
+resource "yandex_resourcemanager_folder_iam_member" "k8s-ig" {
+  folder_id  = var.folder_id
+  role       = "editor"
+  member     = "serviceAccount:${yandex_iam_service_account.k8s-ig.id}"
+  depends_on = [yandex_iam_service_account.k8s-ig]
+}
+
 resource "yandex_compute_instance_group" "k8s-nodes" {
   name                = "k8s-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
-  depends_on          = [
-    yandex_resourcemanager_folder_iam_member.k8s-ig,
-#    yandex_vpc_subnet.k8s-1,
-#    yandex_vpc_subnet.k8s-2,
-#    yandex_vpc_subnet.k8s-3,
-  ]
+  depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-ig]
   instance_template {
     name = "k8s-node-{instance.index}"
     platform_id = var.instance_platform_id
