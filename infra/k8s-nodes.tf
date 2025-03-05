@@ -68,8 +68,8 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   #    path = "/"
   #  }
   #}
-  load_balancer {
-    target_group_name        = "k8s"
-    target_group_description = "Network Load Balancer K8S target group"
-  }
+  #load_balancer {
+  #  target_group_name        = "k8s"
+  #  target_group_description = "Network Load Balancer K8S target group"
+  #}
 }
