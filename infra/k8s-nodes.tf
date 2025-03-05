@@ -3,7 +3,7 @@ data "yandex_compute_image" "vm-image" {
 }
 
 resource "yandex_iam_service_account" "k8s" {
-  name        = "k8s-ig"
+  name        = "k8s"
   description = "Service account for managing K8S instance group"
 }
 resource "yandex_resourcemanager_folder_iam_member" "editor" {

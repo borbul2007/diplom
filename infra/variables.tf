@@ -40,7 +40,8 @@ variable "k8s_networks" {
 
 variable "image_family" {
   type        = string
-  default     = "ubuntu-2204-lts"
+#  default     = "ubuntu-2204-lts"
+  default     = "lamp"
   description = "VM image family"
 }
 
