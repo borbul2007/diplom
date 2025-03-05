@@ -1,6 +1,6 @@
-data "yandex_compute_image" "vm-image" {
-  family = var.image_family
-}
+#data "yandex_compute_image" "vm-image" {
+#  family = var.image_family
+#}
 
 resource "yandex_iam_service_account" "k8s" {
   name        = "k8s"
