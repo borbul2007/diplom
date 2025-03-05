@@ -31,8 +31,8 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
     boot_disk {
       initialize_params {
         image_id = data.yandex_compute_image.vm-image.image_id
-        size     = 10
-        type     = "hdd"
+#        size     = 10
+#        type     = "hdd"
       }
     }
     network_interface {
