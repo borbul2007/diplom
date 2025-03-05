@@ -14,7 +14,7 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   ]
   instance_template {
     name = "k8s-node-{instance.index}"
-    platform_id = instance_platform_id
+    platform_id = var.instance_platform_id
     resources {
       cores         = var.instance_resources_cores
       memory        = var.instance_resources_memory
@@ -32,7 +32,9 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
       subnet_ids = [yandex_vpc_subnet.k8s-1.id,yandex_vpc_subnet.k8s-2.id,yandex_vpc_subnet.k8s-3.id]
       nat        = true
     }
-    scheduling_policy {preemptible = true}
+    scheduling_policy {
+      preemptible = true
+    }
     metadata = {
       serial-port-enable = 1
       user-data          = "${local.cloud-init}"

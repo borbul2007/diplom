@@ -1,3 +1,3 @@
 locals {
-  ssh-key = "ubuntu:${file(var.ssh_root_key_file)}"
+  cloud-init = "${file(var.cloud-init_file)}"
 }
