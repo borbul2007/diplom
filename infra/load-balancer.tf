@@ -16,5 +16,5 @@ resource "yandex_lb_network_load_balancer" "k8s" {
 #        path = "/"
 #      }
 #    }
-#  }
+  }
 }
