@@ -58,16 +58,16 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
     max_unavailable = 1
     max_expansion   = 0
   }
-  health_check {
-    interval            = 2
-    timeout             = 1
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    http_options {
-      port = 80
-      path = "/"
-    }
-  }
+  #health_check {
+  #  interval            = 2
+  #  timeout             = 1
+  #  healthy_threshold   = 2
+  #  unhealthy_threshold = 2
+  # http_options {
+  #    port = 80
+  #    path = "/"
+  #  }
+  #}
   load_balancer {
     target_group_name        = "k8s"
     target_group_description = "Network Load Balancer K8S target group"
