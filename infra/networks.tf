@@ -3,7 +3,7 @@ resource "yandex_vpc_network" "network" {
 }
 
 resource "yandex_vpc_subnet" "subnet" {
-  count = length(var.k8s_networks)
+  count          = length(var.k8s_networks)
   network_id     = yandex_vpc_network.network.id
   name           = "subnet-${count.index}"
   zone           = var.k8s_networks[count.index].zone
