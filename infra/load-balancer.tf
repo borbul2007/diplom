@@ -1,7 +1,7 @@
-resource "yandex_lb_network_load_balancer" "network-load-balancer" {
-  name = "network-load-balancer"
+resource "yandex_lb_network_load_balancer" "k8s" {
+  name = "k8s"
   listener {
-    name = "network-load-balancer-listener"
+    name = "k8s"
     port = 80
     external_address_spec {
       ip_version = "ipv4"

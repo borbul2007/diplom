@@ -38,31 +38,31 @@ variable "k8s_networks" {
   description = "Networks for K8S cluster"
 }
 
-variable "vm_yandex_compute_image_family" {
+variable "image_family" {
   type        = string
   default     = "ubuntu-2204-lts-oslogin"
   description = "VM image family"
 }
 
-variable "vm_yandex_compute_instance_platform_id" {
+variable "instance_platform_id" {
   type        = string
   default     = "standard-v1"
   description = "VM platform ID"
 }
 
-variable "vm_yandex_compute_instance_resources_cores" {
+variable "instance_resources_cores" {
   type        = number
   default     = 2
   description = "VM number of CPU"
 }
 
-variable "vm_yandex_compute_instance_resources_memory" {
+variable "instance_resources_memory" {
   type        = number
   default     = 1
   description = "VM number of memory"
 }
 
-variable "vm_yandex_compute_instance_resources_core_fraction" {
+variable "instance_resources_core_fraction" {
   type        = number
   default     = 5
   description = "VM number of core fraction"

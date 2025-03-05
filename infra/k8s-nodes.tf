@@ -1,5 +1,5 @@
 data "yandex_compute_image" "vm-image" {
-  family = var.vm_yandex_compute_image_family
+  family = image_family
 }
 
 resource "yandex_compute_instance_group" "k8s-nodes" {
@@ -8,17 +8,17 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
   depends_on          = [
     yandex_resourcemanager_folder_iam_member.k8s-ig,
-    yandex_vpc_subnet.subnet-1,
-    yandex_vpc_subnet.subnet-2,
-    yandex_vpc_subnet.subnet-3,
+    yandex_vpc_subnet.k8s-1,
+    yandex_vpc_subnet.k8s-2,
+    yandex_vpc_subnet.k8s-3,
   ]
   instance_template {
     name = "k8s-node-{instance.index}"
-    platform_id = var.vm_yandex_compute_instance_platform_id
+    platform_id = instance_platform_id
     resources {
-      cores         = var.vm_yandex_compute_instance_resources_cores
-      memory        = var.vm_yandex_compute_instance_resources_memory
-      core_fraction = var.vm_yandex_compute_instance_resources_core_fraction
+      cores         = instance_resources_cores
+      memory        = instance_resources_memory
+      core_fraction = instance_resources_core_fraction
     }
     boot_disk {
       initialize_params {
@@ -28,8 +28,8 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
       }
     }
     network_interface {
-      network_id = "${yandex_vpc_network.network.id}"
-      subnet_ids = [yandex_vpc_subnet.subnet-1.id,yandex_vpc_subnet.subnet-2.id,yandex_vpc_subnet.subnet-3.id]
+      network_id = "${yandex_vpc_network.k8s.id}"
+      subnet_ids = [yandex_vpc_subnet.k8s-1.id,yandex_vpc_subnet.k8s-2.id,yandex_vpc_subnet.k8s-3.id]
       nat        = true
     }
     scheduling_policy {preemptible = true}
