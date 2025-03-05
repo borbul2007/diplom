@@ -1,5 +1,5 @@
 data "yandex_compute_image" "vm-image" {
-  family = image_family
+  family = var.image_family
 }
 
 resource "yandex_compute_instance_group" "k8s-nodes" {
@@ -8,17 +8,17 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
   depends_on          = [
     yandex_resourcemanager_folder_iam_member.k8s-ig,
-    yandex_vpc_subnet.k8s-1,
-    yandex_vpc_subnet.k8s-2,
-    yandex_vpc_subnet.k8s-3,
+#    yandex_vpc_subnet.k8s-1,
+#    yandex_vpc_subnet.k8s-2,
+#    yandex_vpc_subnet.k8s-3,
   ]
   instance_template {
     name = "k8s-node-{instance.index}"
     platform_id = instance_platform_id
     resources {
-      cores         = instance_resources_cores
-      memory        = instance_resources_memory
-      core_fraction = instance_resources_core_fraction
+      cores         = var.instance_resources_cores
+      memory        = var.instance_resources_memory
+      core_fraction = var.instance_resources_core_fraction
     }
     boot_disk {
       initialize_params {
