@@ -10,7 +10,7 @@ resource "yandex_iam_service_account" "k8s-ig" {
 resource "yandex_resourcemanager_folder_iam_binding" "editor" {
   folder_id  = var.folder_id
   role       = "editor"
-  members    = ["serviceAccount:${yandex_iam_service_account.k8s-ig.id}"]
+  member    = "serviceAccount:${yandex_iam_service_account.k8s-ig.id}"
   depends_on = [yandex_iam_service_account.k8s-ig]
 }
 

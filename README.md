@@ -8,7 +8,7 @@
 Использовать output заполнить
 export ACCESS_KEY=""
 export SECRET_KEY=""
-terraform init -backend-config="access_key=" -backend-config=""
+terraform init -backend-config="access_key=" -backend-config="secret_key="
 
 yc iam service-accounts list
 yc iam key create --service-account-name infra-editor --output key.json
