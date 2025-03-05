@@ -1,8 +1,8 @@
 resource "yandex_iam_service_account" "infra" {
-  name        = "infra-editor"
+  name        = "infra"
   description = "Service account for managing infrastructure"
 }
-resource "yandex_resourcemanager_folder_iam_member" "infra" {
+resource "yandex_resourcemanager_folder_iam_member" "editor" {
   folder_id  = var.folder_id
   role       = "editor"
   member     = "serviceAccount:${yandex_iam_service_account.infra.id}"
