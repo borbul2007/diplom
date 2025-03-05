@@ -11,4 +11,5 @@ export SECRET_KEY=""
 terraform init -backend-config="access_key=" -backend-config="secret_key="
 
 yc iam service-accounts list
-yc iam key create --service-account-name infra-editor --output key.json
+yc iam key create --service-account-name infra --output key.json
+mv key.json ~/dplm

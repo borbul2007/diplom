@@ -1,13 +1,12 @@
-#data "yandex_compute_image" "vm-image" {
-#  family = var.image_family
-#}
+data "yandex_compute_image" "vm-image" {
+  family = var.image_family
+}
 
 resource "yandex_iam_service_account" "k8s" {
   name        = "k8s"
   description = "Service account for managing K8S instance group"
 }
-resource "yandex_resourcemanager_folder_iam_member" "editor" {
-#resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+resource "yandex_resourcemanager_folder_iam_member" "k8s-editor" {
   folder_id  = var.folder_id
   role       = "editor"
   member    = "serviceAccount:${yandex_iam_service_account.k8s.id}"
@@ -18,8 +17,7 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   name                = "k8s-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s.id}"
-  depends_on          = [yandex_resourcemanager_folder_iam_member.editor]
-#  depends_on          = [yandex_resourcemanager_folder_iam_binding.editor]
+  depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-editor]
   instance_template {
     name = "k8s-node-{instance.index}"
     platform_id = var.instance_platform_id
@@ -30,8 +28,8 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
     }
     boot_disk {
       initialize_params {
-#        image_id = data.yandex_compute_image.vm-image.image_id
-        image_id = "fd8kc2n656prni2cimp5"
+        image_id = data.yandex_compute_image.vm-image.image_id
+#        image_id = "fd8kc2n656prni2cimp5"
         size     = 10
         type     = "hdd"
       }
