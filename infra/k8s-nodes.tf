@@ -18,8 +18,8 @@ resource "yandex_compute_instance_group" "k8s-nodes" {
   name                = "k8s-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s-ig.id}"
-#  depends_on          = [yandex_resourcemanager_folder_iam_member.editor]
-  depends_on          = [yandex_resourcemanager_folder_iam_binding.editor]
+  depends_on          = [yandex_resourcemanager_folder_iam_member.editor]
+#  depends_on          = [yandex_resourcemanager_folder_iam_binding.editor]
   instance_template {
     name = "k8s-node-{instance.index}"
     platform_id = var.instance_platform_id
