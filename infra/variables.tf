@@ -40,15 +40,15 @@ variable "k8s_networks" {
 
 variable "image_family" {
   type        = string
-  default     = "ubuntu-2204-lts"
+  default     = "ubuntu-2404-lts"
   description = "VM image family"
 }
 
-#variable "instance_platform_id" {
-#  type        = string
-#  default     = "standard-v1"
-#  description = "VM platform ID"
-#}
+variable "instance_platform_id" {
+  type        = string
+  default     = "standard-v2"
+  description = "VM platform ID"
+}
 
 variable "instance_resources_cores" {
   type        = number
