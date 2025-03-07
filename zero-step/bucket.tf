@@ -1,5 +1,5 @@
 resource "yandex_kms_symmetric_key" "tfstate-bucket-key" {
-  name              = "tfstate-bucket-key"
+  name              = "tfstate-bucket"
   default_algorithm = "AES_128"
   rotation_period   = "8760h"
 }
@@ -15,7 +15,7 @@ resource "yandex_storage_bucket" "tfstate" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        kms_master_key_id = yandex_kms_symmetric_key.tfstate-bucket-key.id
+        kms_master_key_id = yandex_kms_symmetric_key.tfstate-bucket.id
         sse_algorithm     = "aws:kms"
       }
     }
