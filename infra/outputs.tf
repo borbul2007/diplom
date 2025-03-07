@@ -1,6 +1,6 @@
-output "instance_group_k8s_masters_nodes_public_ips" {
+output "instance_group_k8s_master_nodes_public_ips" {
   description = "Public IP addresses for k8s-master-nodes"
-  value = yandex_compute_instance_group.k8s-masters-nodes.instances.*.network_interface.0.nat_ip_address
+  value = yandex_compute_instance_group.k8s-master-nodes.instances.*.network_interface.0.nat_ip_address
 }
 
 #output "instance_group_k8s_masters_private_ips" {
