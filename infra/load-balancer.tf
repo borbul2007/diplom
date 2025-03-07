@@ -9,12 +9,11 @@ resource "yandex_lb_network_load_balancer" "k8s" {
   }
   attached_target_group {
     target_group_id = yandex_compute_instance_group.k8s-master-nodes.load_balancer.0.target_group_id
-#    healthcheck {
-#      name = "http"
-#      http_options {
-#        port = 80
-#        path = "/"
-#      }
-#    }
+    healthcheck {
+      name = "ssh"
+      tcp_options {
+        port = 22
+      }
+    }
   }
 }
