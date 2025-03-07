@@ -12,3 +12,5 @@ terraform init -backend-config="access_key=" -backend-config="secret_key="
 
 yc iam service-accounts list
 yc iam key create --service-account-name infra --output key.json && mv key.json ~/dplm
+
+ansible-playbook -i /inventory/inventory.ini --private-key ~/dplm/id_rsa cluster.yml
