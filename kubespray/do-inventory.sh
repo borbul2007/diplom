@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "[kube_control_plane]" >> inventory.ini
 echo "\n" >> inventory.ini
 for i in 1 2 3; do
