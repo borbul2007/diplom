@@ -8,7 +8,7 @@ resource "yandex_compute_instance_group" "k8s-master-nodes" {
   service_account_id  = "${yandex_iam_service_account.k8s.id}"
   depends_on          = [yandex_vpc_network.k8s,yandex_resourcemanager_folder_iam_member.k8s-editor]
   instance_template {
-    name = "k8s-node-{instance.index}"
+    name = "k8s-master-node-{instance.index}"
     platform_id = var.instance_platform_id
     resources {
       cores         = var.instance_resources_cores
