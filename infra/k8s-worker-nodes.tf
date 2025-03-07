@@ -44,19 +44,16 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
     zones = ["ru-central1-a","ru-central1-b"]
   }
   deploy_policy {
-    max_unavailable = 1
-    max_expansion   = 0
+    max_unavailable = 2
+    max_expansion   = 2
+    max_creating    = 2
+    max_deleting    = 2
   }
-  #health_check {
-  #  interval            = 2
-  #  timeout             = 1
-  #  healthy_threshold   = 2
-  #  unhealthy_threshold = 2
-  # http_options {
-  #    port = 80
-  #    path = "/"
-  #  }
-  #}
+  health_check {
+   tcp_options {
+      port = 22
+    }
+  }
   load_balancer {
     target_group_name        = "k8s"
     target_group_description = "Network Load Balancer K8S target group"

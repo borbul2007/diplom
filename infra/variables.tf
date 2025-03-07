@@ -58,7 +58,7 @@ variable "instance_resources_cores" {
 
 variable "instance_resources_memory" {
   type        = number
-  default     = 1
+  default     = 2
   description = "VM number of memory"
 }
 
