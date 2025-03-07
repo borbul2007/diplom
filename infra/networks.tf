@@ -1,7 +1,7 @@
 resource "yandex_vpc_network" "k8s" {
   name       = "k8s"
-  depends_on = [yandex_iam_service_account.k8s]
 }
+
 /*
 resource "yandex_vpc_subnet" "subnet" {
   count          = length(var.k8s_networks)
