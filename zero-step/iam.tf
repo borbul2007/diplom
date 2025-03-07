@@ -2,7 +2,7 @@ resource "yandex_iam_service_account" "infra" {
   name        = "infra"
   description = "Service account for managing infrastructure"
 }
-resource "yandex_resourcemanager_folder_iam_member" "admin" {
+resource "yandex_resourcemanager_folder_iam_member" "infra-admin" {
   folder_id  = var.folder_id
   role       = "admin"
   member     = "serviceAccount:${yandex_iam_service_account.infra.id}"
