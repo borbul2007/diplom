@@ -8,8 +8,7 @@
 cd /opt/dplm_tf-mf/zero-step
 terraform init
 terraform apply -auto-approve
-./do-tsstate-buket-key.sh
-# && mv key.json ~/dplm
+./do-tsstate-buket-key.sh && mv key.json ~/dplm
 
 cd /opt/dplm_tf-mf/infra
 terraform init -backend-config="access_key=${ACCESS_KEY}" -backend-config="secret_key=${SECRET_KEY}"
