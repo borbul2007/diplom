@@ -15,7 +15,7 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-
+/*
 variable "k8s_networks" {
   type = list(object({
     zone = string
@@ -37,7 +37,7 @@ variable "k8s_networks" {
   ]
   description = "Networks for K8S cluster"
 }
-
+*/
 variable "image_family" {
   type        = string
   default     = "ubuntu-2204-lts"
