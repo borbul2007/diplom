@@ -10,4 +10,4 @@ echo "kube_control_plane" >> inventory.ini
 echo "\n" >> inventory.ini
 [kube_node]
 for i in 1 2 ; do
-echo "node4 ansible_host=$(terraform output -json k8s_worker_nodes_public_ips | jq -j ".[${i}]") ip=$(terraform output -json k8s_worker_nodes_private_ips | jq -j ".[${i}]") >> inventory.ini
+echo "node4 ansible_host=$(terraform output -json k8s_workers_nodes_public_ips | jq -j ".[${i}]") ip=$(terraform output -json k8s_workers_nodes_private_ips | jq -j ".[${i}]") >> inventory.ini
