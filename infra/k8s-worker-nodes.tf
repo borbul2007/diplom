@@ -1,7 +1,3 @@
-data "yandex_compute_image" "vm-image" {
-  family = var.image_family
-}
-
 resource "yandex_compute_instance_group" "k8s-worker-nodes" {
   name                = "k8s-worker-nodes"
   folder_id           = var.folder_id

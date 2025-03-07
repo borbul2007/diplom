@@ -38,6 +38,11 @@ variable "k8s_networks" {
   description = "Networks for K8S cluster"
 }
 */
+
+data "yandex_compute_image" "vm-image" {
+  family = var.image_family
+}
+
 variable "image_family" {
   type        = string
   default     = "ubuntu-2204-lts"
