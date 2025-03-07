@@ -40,7 +40,8 @@ variable "k8s_networks" {
 */
 
 data "yandex_compute_image" "vm-image" {
-  family = var.image_family
+  family     = var.image_family
+  depends_on = [yandex_iam_service_account.k8s]
 }
 
 variable "image_family" {
