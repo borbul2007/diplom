@@ -1,4 +1,4 @@
-resource "yandex_kms_symmetric_key" "tfstate-bucket-key" {
+resource "yandex_kms_symmetric_key" "tfstate-bucket" {
   name              = "tfstate-bucket"
   default_algorithm = "AES_128"
   rotation_period   = "8760h"
