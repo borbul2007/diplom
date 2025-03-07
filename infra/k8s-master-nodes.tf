@@ -2,8 +2,8 @@ data "yandex_compute_image" "vm-image" {
   family = var.image_family
 }
 
-resource "yandex_compute_instance_group" "k8s-nodes" {
-  name                = "k8s-nodes"
+resource "yandex_compute_instance_group" "k8s-master nodes" {
+  name                = "k8s-master-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s.id}"
   depends_on          = [yandex_vpc_network.k8s,yandex_resourcemanager_folder_iam_member.k8s-editor]
