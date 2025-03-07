@@ -50,7 +50,6 @@ resource "yandex_compute_instance_group" "k8s-master-nodes" {
   health_check {
    tcp_options {
       port = 22
-      path = "/"
     }
   }
   load_balancer {
