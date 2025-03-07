@@ -5,12 +5,14 @@
 
 Подготовьте backend для Terraform Рекомендуемый вариант: S3 bucket в созданном ЯО аккаунте(создание бакета через TF)
 
-Использовать output заполнить
-export ACCESS_KEY=""
-export SECRET_KEY=""
-terraform init -backend-config="access_key=" -backend-config="secret_key="
+cd /opt/dplm_tf-mf/zero-step
+terraform init
+terraform apply -auto-approve
+./do-key.sh
 
-yc iam service-accounts list
-yc iam key create --service-account-name infra --output key.json && mv key.json ~/dplm
+cd /opt/dplm_tf-mf/infra
+terraform init -backend-config="access_key=${ACCESS_KEY}" -backend-config="secret_key=${SECRET_KEY}"
+./do-kubespray-inventery.sh && mv inventory.ini ~/kubespray
 
-ansible-playbook -i /inventory/inventory.ini --private-key ~/dplm/id_rsa cluster.yml
+cd ~/kubespray
+ansible-playbook -i /inventory.ini --private-key ~/dplm/id_ed25519 cluster.yml
