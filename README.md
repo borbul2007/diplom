@@ -7,7 +7,8 @@ terraform apply -auto-approve
 ./do-key.sh
 
 cd /opt/dplm_tf-mf/infra
-terraform init ${BACKEND_CONFIG}
+#terraform init ${BACKEND_CONFIG}
+terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY}
 terraform apply -auto-approve
 ./do-inventery.sh && mv inventory.ini ~/kubespray
 
