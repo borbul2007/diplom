@@ -15,29 +15,6 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-/*
-variable "k8s_networks" {
-  type = list(object({
-    zone = string
-    cidr = string
-  }))  
-  default = [
-    {
-      zone = "ru-central1-a"
-      cidr = "192.168.10.0/24"
-    },
-    {
-      zone = "ru-central1-b"
-      cidr = "192.168.20.0/24"
-    },
-    {
-      zone = "ru-central1-d"
-      cidr = "192.168.30.0/24"
-    }
-  ]
-  description = "Networks for K8S cluster"
-}
-*/
 
 data "yandex_compute_image" "vm-image" {
   family     = var.image_family
