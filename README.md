@@ -4,7 +4,7 @@
 cd /opt/dplm_tf-mf/zero-step
 terraform init
 terraform apply -auto-approve
-./do-key.sh && mv key.json ~/dplm
+./do-key.sh
 
 cd /opt/dplm_tf-mf/infra
 terraform init -backend-config="access_key=${ACCESS_KEY}" -backend-config="secret_key=${SECRET_KEY}"
