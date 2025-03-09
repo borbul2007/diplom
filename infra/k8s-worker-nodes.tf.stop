@@ -21,7 +21,6 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
     network_interface {
       network_id = "${yandex_vpc_network.k8s.id}"
       subnet_ids = [yandex_vpc_subnet.k8s-0.id,yandex_vpc_subnet.k8s-1.id]
-      nat        = true
     }
     scheduling_policy {
       preemptible = true

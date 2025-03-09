@@ -11,7 +11,7 @@ resource "yandex_compute_instance" "jump-host" {
     initialize_params {
       image_id = "fd8kc2n656prni2cimp5"
       size     = 10
-      type     = "network-ssd"
+      type     = "network-hdd"
     }
   }
   network_interface {
