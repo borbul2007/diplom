@@ -1,19 +1,15 @@
 # Terraform Manifest
 ----
 
-cd /opt/dplm_tf-mf/zero-step
+cd ~/diplom/zero-step
 terraform init
 terraform apply -auto-approve
 ./do-key.sh
 
-cd /opt/dplm_tf-mf/infra
-#terraform init ${BACKEND_CONFIG}
+cd ~/diplom/infra
 terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY}
 terraform apply -auto-approve
 ./do-inventery.sh && mv inventory.ini ~/kubespray
-
-cd ~/kubespray
-ansible-playbook -i inventory.ini --private-key ~/dplm/id_ed25519 cluster.yml
 
 
 # Jump host
