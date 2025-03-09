@@ -43,3 +43,9 @@ variable "k8s_networks" {
   ]
   description = "Networks for K8S cluster"
 }
+
+variable "cloud-init_file" {
+  type        = string
+  default     = "./metadata.yaml"
+  description = "Cloud-init config"
+}
