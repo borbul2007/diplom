@@ -2,7 +2,6 @@ resource "yandex_compute_instance" "jump-host" {
   name        = "jump-host"
   platform_id = "standard-v1"
   zone        = var.default_zone
-  depends_on  = [yandex_vpc_network.k8s]
   resources {
     cores         = 2
     memory        = 2
