@@ -11,12 +11,12 @@ resource "yandex_compute_instance" "jump-host" {
     initialize_params {
       image_id = "fd8kc2n656prni2cimp5"
       size     = 10
-      type     = "network-hdd"
+      type     = "network-ssd"
     }
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.k8s-0.id
-#    nat        = true
+    nat       = true
   }
   scheduling_policy {
     preemptible = true
