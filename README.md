@@ -20,18 +20,17 @@ ansible-playbook -i inventory.ini --private-key ~/dplm/id_ed25519 cluster.yml
 # yc init (see URL!)
 # yc iam key create --service-account-name nt-terraform --output key.json && mv ~key.json
 
-Jump host
-sudo apt install python3-pip git helm jq
-
+# Jump host
 curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+sudo apt update && sudo apt install -y unzip python3-pip git jq
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl && sudo mv kubectl /usr/local/bin
+curl -LO "https://hashicorp-releases.yandexcloud.net/terraform/1.11.1/terraform_1.11.1_linux_amd64.zip"
+sudo sudo unzip terraform_1.11.1_linux_amd64.zip -d /usr/local/bin && rm terraform_1.11.1_linux_amd64.zip
+mkdir ~/keys
+git clone 
 
-sudo apt-get update && sudo apt-get install -y apt-transport-https
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubectl
+git clone git clone git@github.com:kubernetes-sigs/kubespray.git && cd ~/kubespray && cp -rfp inventory/sample inventory/k8s
+reboot
 
-sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
-wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-sudo apt update
-sudo apt-get install terraform
+#ansible-playbook -i inventory.ini --private-key ~/keys/id_ed25519 cluster.yml
