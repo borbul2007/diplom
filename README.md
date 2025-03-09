@@ -22,10 +22,10 @@ sudo apt update && sudo apt install -y unzip python3-pip git jq
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x kubectl && sudo mv kubectl /usr/local/bin
 curl -LO "https://hashicorp-releases.yandexcloud.net/terraform/1.11.1/terraform_1.11.1_linux_amd64.zip"
-sudo sudo unzip terraform_1.11.1_linux_amd64.zip -d /usr/local/bin && rm terraform_1.11.1_linux_amd64.zip
+sudo unzip -u terraform_1.11.1_linux_amd64.zip -d /usr/local/bin && rm terraform_1.11.1_linux_amd64.zip
 mkdir ~/keys
-git clone 
-git clone git clone git@github.com:kubernetes-sigs/kubespray.git
+git clone https://github.com/borbul2007/diplom.git 
+git clone https://github.com/kubernetes-sigs/kubespray.git
 reboot
 
 
@@ -34,5 +34,6 @@ reboot
 yc init (see URL!)
 yc iam key create --service-account-name nt-terraform --output key.json && mv ~keys/nt-terraform.json
 
-
-#ansible-playbook -i inventory.ini --private-key ~/keys/id_ed25519 cluster.yml
+sudo pip3 install -r kubespray/requirements.txt
+cd ~/kubespray
+ansible-playbook -i inventory.ini --private-key ~/keys/id_ed25519 cluster.yml
