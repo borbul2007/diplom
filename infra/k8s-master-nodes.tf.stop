@@ -20,7 +20,7 @@ resource "yandex_compute_instance_group" "k8s-master-nodes" {
     }
     network_interface {
       network_id = "${yandex_vpc_network.k8s.id}"
-      subnet_ids = [yandex_vpc_subnet.k8s-1.id,yandex_vpc_subnet.k8s-2.id,yandex_vpc_subnet.k8s-3.id]
+      subnet_ids = [yandex_vpc_subnet.k8s-0.id,yandex_vpc_subnet.k8s-1.id,yandex_vpc_subnet.k8s-2.id]
       nat        = true
     }
     scheduling_policy {
