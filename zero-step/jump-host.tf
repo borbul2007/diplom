@@ -15,9 +15,10 @@ resource "yandex_compute_instance" "jump-host" {
     }
   }
   network_interface {
-    network_id = "${yandex_vpc_network.k8s.id}"
-    subnet_ids = [yandex_vpc_subnet.k8s-1.id]
+    network_id = yandex_vpc_network.k8s.id
+#    subnet_id  = [yandex_vpc_subnet.k8s-1.id]
 #    nat        = true
+    depends_on  = [yandex_vpc_network.k8s]
   }
   scheduling_policy {
     preemptible = true
