@@ -2,6 +2,7 @@ resource "yandex_compute_instance" "jump-host" {
   name        = "jump-host"
   platform_id = "standard-v1"
   zone        = var.default_zone
+  depends_on  = [yandex_vpc_network.k8s]
   resources {
     cores         = 2
     memory        = 2
@@ -15,10 +16,8 @@ resource "yandex_compute_instance" "jump-host" {
     }
   }
   network_interface {
-    network_id = yandex_vpc_network.k8s.id
-#    subnet_id  = [yandex_vpc_subnet.k8s-1.id]
+    subnet_id  = [yandex_vpc_subnet.k8s-1.id]
 #    nat        = true
-    depends_on  = [yandex_vpc_network.k8s]
   }
   scheduling_policy {
     preemptible = true
