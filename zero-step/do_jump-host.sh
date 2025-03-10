@@ -9,3 +9,7 @@ scp -i ~/nt-ssh/id_ed25519 ~/nt-ssh/* ubuntu@$(terraform output jump-host_public
 scp -i ~/nt-ssh/id_ed25519 ./resources/infra.json ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
 scp -i ~/nt-ssh/id_ed25519 ./resources/.profile ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/
 ssh -i ~/nt-ssh/id_ed25519 ubuntu@$(terraform output jump-host_public_ip | xargs)
+terraform version
+kubectl version
+helm version
+yc version

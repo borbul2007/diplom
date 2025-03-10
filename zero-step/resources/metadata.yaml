@@ -14,7 +14,6 @@ packages:
   python3-pip
   git
   jq
-package_upgrade: true
 write_files:
   - path: "/usr/local/etc/startup.sh"
     content: |
@@ -27,7 +26,8 @@ write_files:
       curl -O https://get.helm.sh/helm-v3.17.1-linux-amd64.tar.gz
       tar xvf helm-v3.17.1-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin
       rm helm-v3.17.1-linux-amd64.tar.gz && rm -rf linux-amd64
-      curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash && source "/home/ubuntu/.bashrc"
+      curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+      source "/home/ubuntu/.bashrc"
       cd ~ &&  mkdir keys
       git clone https://github.com/borbul2007/diplom.git 
       git clone https://github.com/kubernetes-sigs/kubespray.git
