@@ -5,4 +5,5 @@ echo "export SECRET_KEY=$(echo "\"secret_key=$(terraform output tfstate-bucket_s
 echo "export PUBLIC_IP=$(terraform output jump-host_public_ip)" >> resources/.profile
 yc iam key create --service-account-name infra --output resources/infra.json
 
-
+scp -i ~/nt-ssh/id_ed25519 ./resources/infra.json ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
+scp -i ~/nt-ssh/id_ed25519 ./resources/.profile ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/
