@@ -5,7 +5,7 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
   depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-editor]
   instance_template {
     name = "k8s-worker-node-{instance.index}"
-    platform_id = "standard-v1"
+    platform_id = "standard-v2"
     resources {
       cores         = var.instance_resources_cores
       memory        = var.instance_resources_memory
