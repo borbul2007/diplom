@@ -20,7 +20,7 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
     }
     network_interface {
       network_id = "${var.yandex_vpc_network.k8s.id}"
-      subnet_ids = [var.yandex_vpc_subnet.k8s-0.id,var.yandex_vpc_subnet.k8s-1.id}]
+      subnet_ids = [var.yandex_vpc_subnet.k8s_0.id,var.yandex_vpc_subnet.k8s_1.id}]
     }
     scheduling_policy {
       preemptible = true
