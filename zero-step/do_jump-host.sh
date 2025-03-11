@@ -10,7 +10,7 @@ echo "export TF_VAR_yandex_vpc_subnet_k8s_2_id=$(terraform output yandex_vpc_sub
 
 yc iam key create --service-account-name infra --output resources/infra.json
 
-scp -i ~/nt-ssh/id_ed25519 ~/nt-ssh/* ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
-scp -i ~/nt-ssh/id_ed25519 ./resources/infra.json ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
-scp -i ~/nt-ssh/id_ed25519 ./resources/.profile ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/
-ssh -i ~/nt-ssh/id_ed25519 ubuntu@$(terraform output jump-host_public_ip | xargs)
+scp -i ~/keys/id_ed25519 ~/keys/* ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
+scp -i ~/keys/id_ed25519 ./resources/infra.json ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
+scp -i ~/keys/id_ed25519 ./resources/.profile ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/
+ssh -i ~/keys/id_ed25519 ubuntu@$(terraform output jump-host_public_ip | xargs)
