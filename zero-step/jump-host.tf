@@ -18,9 +18,7 @@ resource "yandex_compute_instance" "jump-host" {
     subnet_id = "${yandex_vpc_subnet.k8s-0.id}"
     nat       = true
   }
-  scheduling_policy {
-    preemptible = true
-  }
+  scheduling_policy {preemptible = true}
   metadata = {
     serial-port-enable = 1
     user-data          = "${local.cloud-init}"

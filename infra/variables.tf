@@ -46,7 +46,7 @@ variable "instance_resources_core_fraction" {
 
 variable "cloud-init_file" {
   type        = string
-  default     = "./metadata.yaml"
+  default     = "./resources/metadata.yaml"
   description = "Cloud-init config"
 }
 
@@ -57,5 +57,8 @@ variable "yandex_vpc_subnet_k8s_0_id" {
   type = string
 }
 variable "yandex_vpc_subnet_k8s_1_id" {
+  type = string
+}
+variable "yandex_vpc_subnet_k8s_2_id" {
   type = string
 }

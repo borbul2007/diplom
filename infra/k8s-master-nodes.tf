@@ -19,12 +19,10 @@ resource "yandex_compute_instance_group" "k8s-master-nodes" {
       }
     }
     network_interface {
-      network_id = "${yandex_vpc_network.k8s.id}"
-      subnet_ids = [yandex_vpc_subnet.k8s-0.id,yandex_vpc_subnet.k8s-1.id,yandex_vpc_subnet.k8s-2.id]
+      network_id = "${var.yandex_vpc_network_k8s_id}"
+      subnet_ids = [var.yandex_vpc_subnet_k8s_0_id,var.yandex_vpc_subnet_k8s_1_id,var.yandex_vpc_subnet_k8s_2_id]
     }
-    scheduling_policy {
-      preemptible = true
-    }
+    scheduling_policy {preemptible = true}
     metadata = {
       serial-port-enable = 1
       user-data          = "${local.cloud-init}"
@@ -49,8 +47,4 @@ resource "yandex_compute_instance_group" "k8s-master-nodes" {
       port = 22
     }
   }
-#  load_balancer {
-#    target_group_name        = "k8s"
-#    target_group_description = "Network Load Balancer K8S target group"
-#  }
 }
