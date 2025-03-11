@@ -13,4 +13,4 @@ yc iam key create --service-account-name infra --output resources/infra.json
 scp -i ~/keys/id_ed25519 ~/keys/* ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
 scp -i ~/keys/id_ed25519 ./resources/infra.json ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/keys/
 scp -i ~/keys/id_ed25519 ./resources/.profile ubuntu@$(terraform output jump-host_public_ip | xargs):/home/ubuntu/
-ssh -i ~/keys/id_ed25519 ubuntu@$(terraform output jump-host_public_ip | xargs)
+#ssh -i ~/keys/id_ed25519 ubuntu@$(terraform output jump-host_public_ip | xargs)
