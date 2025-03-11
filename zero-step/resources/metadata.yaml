@@ -26,10 +26,10 @@ write_files:
       curl -LO https://get.helm.sh/helm-v3.17.1-linux-amd64.tar.gz
       tar xvf helm-v3.17.1-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin
       rm helm-v3.17.1-linux-amd64.tar.gz && rm -rf linux-amd64
-      curl -L https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+      export HOME=/home/ubuntu; curl -L https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
       mkdir -p /home/ubuntu/keys
-      git clone https://github.com/borbul2007/diplom.git /home/ubuntu/diplom
-      git clone https://github.com/kubernetes-sigs/kubespray.git /home/ubuntu/kubespray
+      git clone https://github.com/borbul2007/diplom.git /home/ubuntu/diplom && chown -R ubuntu:ubuntu /home/ubuntu/diplom
+      git clone https://github.com/kubernetes-sigs/kubespray.git /home/ubuntu/kubespray && chown -R ubuntu:ubuntu /home/ubuntu/kubespray
     permissions: '0755'
     defer: true
 runcmd:

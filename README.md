@@ -29,6 +29,8 @@ git clone https://github.com/borbul2007/diplom.git
 git clone https://github.com/kubernetes-sigs/kubespray.git
 reboot
 
+chmod +x do_jump-host.sh && ./do_jump-host.sh
+
 
 # Steps on the Jump host
 # restore sa on local VM (https://yandex.cloud/ru/docs/cli/quickstart)
