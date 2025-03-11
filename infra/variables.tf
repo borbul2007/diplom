@@ -17,7 +17,7 @@ variable "default_zone" {
 }
 
 data "yandex_compute_image" "vm-image" {
-  family     = var.image_family
+  family = var.image_family
 }
 
 variable "image_family" {
