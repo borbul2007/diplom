@@ -9,9 +9,7 @@ users:
   shell: /bin/bash
   ssh_authorized_keys:
     - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAI/EG5UfNnSxWsNBP0qo3Jrv2FkQlHbOypXXFxLpIM6
-package_update: true
-package_upgrade: true
-package_reboot_if_required: true
+packages:
   - unzip
   - python3-pip
   - git
@@ -21,7 +19,6 @@ write_files:
     content: |
       #!/bin/bash
 
-      cd /home/ubuntu
       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       chmod +x kubectl && sudo mv kubectl /usr/local/bin
       curl -LO "https://hashicorp-releases.yandexcloud.net/terraform/1.11.1/terraform_1.11.1_linux_amd64.zip"
@@ -30,10 +27,9 @@ write_files:
       tar xvf helm-v3.17.1-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin
       rm helm-v3.17.1-linux-amd64.tar.gz && rm -rf linux-amd64
       curl -L https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-      source "/home/ubuntu/.bashrc"
-      mkdir keys
-      git clone https://github.com/borbul2007/diplom.git 
-      git clone https://github.com/kubernetes-sigs/kubespray.git
+      mkdir -p /home/ubuntu/keys
+      git clone https://github.com/borbul2007/diplom.git /home/ubuntu/diplom
+      git clone https://github.com/kubernetes-sigs/kubespray.git /home/ubuntu/kubespray
     permissions: '0755'
     defer: true
 runcmd:
