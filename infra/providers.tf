@@ -19,6 +19,6 @@ terraform {
 provider "yandex" {
   cloud_id                 = var.cloud_id
   folder_id                = var.folder_id
-  service_account_key_file = file("~/dplm/key.json")
+  service_account_key_file = file("~/keys/infra.json")
   zone                     = var.default_zone
 }

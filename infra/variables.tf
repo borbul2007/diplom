@@ -26,12 +26,6 @@ variable "image_family" {
   description = "VM image family"
 }
 
-variable "instance_platform_id" {
-  type        = string
-  default     = "standard-v2"
-  description = "VM platform ID"
-}
-
 variable "instance_resources_cores" {
   type        = number
   default     = 2
