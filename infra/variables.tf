@@ -50,7 +50,7 @@ variable "cloud-init_file" {
   description = "Cloud-init config"
 }
 
-variable "yandex_vpc_network_k8s" {
+variable "yandex_vpc_network_k8s_id" {
   type = string
 }
 variable "yandex_vpc_subnet_k8s_0_id" {
