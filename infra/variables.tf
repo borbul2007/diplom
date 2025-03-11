@@ -53,9 +53,9 @@ variable "cloud-init_file" {
 variable "yandex_vpc_network_k8s" {
   type = string
 }
-variable "ndex_vpc_subnet_k8s_0_id" {
+variable "yandex_vpc_subnet_k8s_0_id" {
   type = string
 }
-variable "ndex_vpc_subnet_k8s_1_id" {
+variable "yandex_vpc_subnet_k8s_1_id" {
   type = string
 }
