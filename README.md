@@ -10,6 +10,7 @@ terraform init && terraform apply -auto-approve
 chmod +x do_jump-host.sh && ./do_jump-host.sh
 
 ## On jump host
+terraform version && kubectl version && helm version && yc version
 cd ~/diplom/infra
 #cp .terraformrc ~
 terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY} && terraform apply -auto-approve

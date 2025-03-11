@@ -13,3 +13,9 @@ output "yandex_vpc_network_k8s_id" {
 output "yandex_vpc_subnet_k8s-0_id" {
   value = yandex_vpc_subnet.k8s-0.id
 }
+output "yandex_vpc_subnet_k8s-1_id" {
+  value = yandex_vpc_subnet.k8s-1.id
+}
+output "yandex_vpc_subnet_k8s-2_id" {
+  value = yandex_vpc_subnet.k8s-2.id
+}
