@@ -2,7 +2,7 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
   name                = "k8s-worker-nodes"
   folder_id           = var.folder_id
   service_account_id  = "${yandex_iam_service_account.k8s.id}"
-  depends_on          = [yandex_vpc_network.k8s,yandex_resourcemanager_folder_iam_member.k8s-editor]
+  depends_on          = [yandex_resourcemanager_folder_iam_member.k8s-editor]
   instance_template {
     name = "k8s-worker-node-{instance.index}"
     platform_id = "standard-v1"
@@ -19,8 +19,8 @@ resource "yandex_compute_instance_group" "k8s-worker-nodes" {
       }
     }
     network_interface {
-      network_id = "${yandex_vpc_network.k8s.id}"
-      subnet_ids = [yandex_vpc_subnet.k8s-0.id,yandex_vpc_subnet.k8s-1.id]
+      network_id = "${var.yandex_vpc_network.k8s.id}"
+      subnet_ids = [var.yandex_vpc_subnet.k8s-0.id,var.yandex_vpc_subnet.k8s-1.id}]
     }
     scheduling_policy {
       preemptible = true

@@ -7,3 +7,9 @@ output "tfstate-bucket_secret_key" {
 output "jump-host_public_ip" {
   value = yandex_compute_instance.jump-host.network_interface.0.nat_ip_address
 }
+output "yandex_vpc_network.k8s.id" {
+  value = yandex_vpc_network.k8s.id
+}
+output "yandex_vpc_subnet.k8s-0.id" {
+  value = yandex_vpc_subnet.k8s-0.id
+}

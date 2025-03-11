@@ -49,3 +49,4 @@ variable "cloud-init_file" {
   default     = "./metadata.yaml"
   description = "Cloud-init config"
 }
+

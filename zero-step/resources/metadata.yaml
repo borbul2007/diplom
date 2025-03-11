@@ -30,6 +30,7 @@ write_files:
       mkdir -p /home/ubuntu/keys
       git clone https://github.com/borbul2007/diplom.git /home/ubuntu/diplom && chown -R ubuntu:ubuntu /home/ubuntu/diplom
       git clone https://github.com/kubernetes-sigs/kubespray.git /home/ubuntu/kubespray && chown -R ubuntu:ubuntu /home/ubuntu/kubespray
+      cp /home/ubuntu/diplom/infra/.terraformrc /home/ubuntu
     permissions: '0755'
     defer: true
 runcmd:
