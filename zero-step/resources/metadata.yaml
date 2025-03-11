@@ -11,7 +11,7 @@ users:
     - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAI/EG5UfNnSxWsNBP0qo3Jrv2FkQlHbOypXXFxLpIM6
 packages:
   - unzip
-  - python3-pip
+  - python3-full
   - git
   - jq
 write_files:
