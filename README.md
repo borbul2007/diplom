@@ -17,3 +17,5 @@ terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY} && te
 
 
 git clone -b release-2.24 https://github.com/kubernetes-sigs/kubespray.git
+vi /home/ubuntu/kubespray/roles/kubernetes/preinstall/tasks/0040-verify-settings.yml
+alias ll='ls -lsa --color=auto'

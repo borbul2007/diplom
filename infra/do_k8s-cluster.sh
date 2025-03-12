@@ -9,7 +9,8 @@ for i in 0 1 ; do echo "k8s-worker-node-$((${i}+1)) ip=$(terraform output -json 
 cd ~
 python3 -m venv venv && source ./venv/bin/activate
 git clone https://github.com/kubernetes-sigs/kubespray.git /home/ubuntu/kubespray
-cp -rfp ~/kubespray/inventory/sample ~/kubespray/inventory/mycluster && cp ~/diplom/infra/resources/inventory.ini ~/kubespray/inventory/mycluster
+cp -rfp ~/kubespray/inventory/sample ~/kubespray/inventory/mycluster && cp -rfp ~/diplom/infra/resources/inventory.ini ~/kubespray/inventory/mycluster
+cp -rfp ~/diplom/infra/resources/0040-verify-settings.yml /home/ubuntu/kubespray/roles/kubernetes/preinstall/tasks/0040-verify-settings.yml
 
 cd ~/kubespray
 pip3 install -r requirements.txt
