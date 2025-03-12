@@ -15,3 +15,6 @@ cd ~/diplom/infra
 #cp .terraformrc ~
 terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY} && terraform apply -auto-approve
 ./do_k8s-cluster.sh
+
+
+git clone -b release-2.26 git@github.com:kubernetes-sigs/kubespray.git
