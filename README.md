@@ -16,4 +16,4 @@ terraform init -backend-config=${ACCESS_KEY} -backend-config=${SECRET_KEY} && te
 ./do_k8s-cluster.sh
 
 
-git clone -b release-2.26 git@github.com:kubernetes-sigs/kubespray.git
+git clone -b release-2.24 https://github.com/kubernetes-sigs/kubespray.git
