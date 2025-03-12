@@ -1,15 +1,6 @@
 resource "yandex_vpc_network" "k8s" {
   name       = "k8s"
 }
-/*
-resource "yandex_vpc_subnet" "k8s" {
-  count          = length(var.k8s_networks)
-  network_id     = yandex_vpc_network.k8s.id
-  name           = "k8s-${count.index}"
-  zone           = var.k8s_networks[count.index].zone
-  v4_cidr_blocks = [var.k8s_networks[count.index].cidr]
-}
-*/
 
 resource "yandex_vpc_subnet" "k8s-0" {
   name           = "k8s-0"

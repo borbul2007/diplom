@@ -22,28 +22,6 @@ variable "tfstate_bucket_name" {
   description = "Yandex Object Storage bucket for Terraform state"
 }
 
-variable "k8s_networks" {
-  type = list(object({
-    zone = string
-    cidr = string
-  }))  
-  default = [
-    {
-      zone = "ru-central1-a"
-      cidr = "192.168.10.0/24"
-    },
-    {
-      zone = "ru-central1-b"
-      cidr = "192.168.20.0/24"
-    },
-    {
-      zone = "ru-central1-d"
-      cidr = "192.168.30.0/24"
-    }
-  ]
-  description = "Networks for K8S cluster"
-}
-
 variable "cloud-init_file" {
   type        = string
   default     = "./resources/metadata.yaml"

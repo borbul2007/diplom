@@ -3,7 +3,7 @@ resource "yandex_compute_instance" "jump-host" {
   platform_id = "standard-v1"
   zone        = var.default_zone
   resources {
-    cores         = 1
+    cores         = 2
     memory        = 2
     core_fraction = 5
   }
