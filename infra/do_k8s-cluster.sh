@@ -15,3 +15,9 @@ cp -rfp ~/diplom/infra/resources/0040-verify-settings.yml /home/ubuntu/kubespray
 cd ~/kubespray
 pip3 install -r requirements.txt
 ansible-playbook -i ~/kubespray/inventory/mycluster/inventory.ini -u ubuntu -b -v --private-key ~/keys/id_ed25519 cluster.yml -e kube_version=1.31.3
+
+ssh -i ~/keys/id_ed25519 ubuntu@k8s-master-node-1 "USERNAME=$(whoami); sudo chown -R $USERNAME:$USERNAME /etc/kubernetes/admin.conf"
+mkdir ~/.kube && scp -i ~/keys/id_ed25519 ubuntu@k8s-master-node-1:/etc/kubernetes/admin.conf ~/.kube/config
+sed -i -e "s|    server:.*|    server: https://k8s-master-node-1:6443|g" ~/.kube/config
+
+kubectl get pods --all-namespaces
