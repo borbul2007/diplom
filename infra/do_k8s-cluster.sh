@@ -14,4 +14,4 @@ cp -rfp ~/diplom/infra/resources/0040-verify-settings.yml /home/ubuntu/kubespray
 
 cd ~/kubespray
 pip3 install -r requirements.txt
-ansible-playbook -i ~/kubespray/inventory/mycluster/inventory.ini -u ubuntu -b -v --private-key ~/keys/id_ed25519 cluster.yml -e kube_version=1.31
+ansible-playbook -i ~/kubespray/inventory/mycluster/inventory.ini -u ubuntu -b -v --private-key ~/keys/id_ed25519 cluster.yml -e kube_version=1.31.3
