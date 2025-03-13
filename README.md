@@ -3,7 +3,6 @@
 ## On localhost (https://yandex.cloud/ru/docs/cli/quickstart)
 yc init (see URL!)
 yc iam key create --service-account-name nt-terraform --output key.json && mv ~keys/nt-terraform.json
-
 cd ~/diplom && git clone https://github.com/borbul2007/diplom.git
 
 cd ~/diplom/zero-step
