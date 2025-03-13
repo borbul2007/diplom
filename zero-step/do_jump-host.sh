@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ~/diplom/zero-step
-echo "export JUMP_HOST_PUBLIC_IP=$(terraform output jump-host_public_ip | xargs)" >> /.profile && source /.profile
+echo "export JUMP_HOST_PUBLIC_IP=$(terraform output jump-host_public_ip | xargs)" >> ~/.profile && source ~/.profile
 echo "export ACCESS_KEY=$(echo "\"access_key=$(terraform output tfstate-bucket_access_key)" | sed -e "s/_key=\"/_key=/g")" >> ./resources/.profile
 echo "export SECRET_KEY=$(echo "\"secret_key=$(terraform output tfstate-bucket_secret_key)" | sed -e "s/_key=\"/_key=/g")" >> ./resources/.profile
 echo "export TF_VAR_yandex_vpc_network_k8s_id=$(terraform output yandex_vpc_network_k8s_id)" >> ./resources/.profile
